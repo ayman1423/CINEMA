@@ -1,0 +1,151 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #111, #000);
+    color: white;
+    height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    background: linear-gradient(45deg, gold, orange);
+    color: black;
+}
+
+.active {
+    background: linear-gradient(45deg, gold, orange);
+    color: black;
+}
+
+/* MAIN */
+main {
+    text-align: center;
+    margin-top: 80px;
+    animation: fadeIn 1.5s ease;
+}
+
+/* TITLE */
+.title {
+    font-size: 60px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+
+    background: linear-gradient(90deg, gold, orange, gold);
+    background-size: 200%;
+    background-clip:text ;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shine 3s infinite linear;
+}
+
+.title::after {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background: gold;
+    left: 20%;
+    bottom: -10px;
+    transition: 0.4s;
+}
+
+.title:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Subtitle */
+.subtitle {
+    margin-top: 20px;
+    color: #ccc;
+}
+
+/* COUNTDOWN */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.countdown div {
+    background: rgba(255, 215, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.countdown div:hover {
+    background: rgba(255, 215, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.countdown span {
+    font-size: 30px;
+    color: gold;
+}
+
+/* BUTTON */
+.notify-btn {
+    margin-top: 40px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, gold, orange);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.notify-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px gold;
+}
+
+/* MESSAGE */
+.message {
+    margin-top: 15px;
+    color: gold;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+/* ANIMATIONS */
+@keyframes shine {
+    0% { background-position: 0%; }
+    100% { background-position: 200%; }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

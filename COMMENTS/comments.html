@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+    <link rel="stylesheet" href="comments.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="../index.html" class="nav-link">Home Page</a>
+        <a href="../OPINIONS/opinion.html" class="nav-link">Opinions</a>
+        <a href="comments.html" class="nav-link active">Comments</a>
+        <a href="../CONTACT US/contact us.html" class="nav-link">Contact Us</a>
+        <a href="../ABOUT US/about us.html" class="nav-link">About Us</a>
+        <a href="../TOP RATED/top rated.html" class="nav-link">Top Rated</a>
+    </nav>
+</header>
+
+<main>
+    <h1 class="title">Comments</h1>
+
+    <!-- ADD COMMENT -->
+    <div class="form-box">
+        <input type="text" id="name" placeholder="Your name">
+        <textarea id="comment" placeholder="Write a comment..."></textarea>
+        <button onclick="addComment()">Post</button>
+        <button onclick="removeComment()">remove comment(s)</button>
+    </div>
+
+    <!-- COMMENTS -->
+    <div id="commentsContainer"></div>
+</main>
+
+<script>
+let comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+function saveComments() {
+    localStorage.setItem("comments", JSON.stringify(comments));
+}
+
+function renderComments() {
+    const container = document.getElementById("commentsContainer");
+    container.innerHTML = "";
+
+    comments.forEach((c, index) => {
+        const div = document.createElement("div");
+        div.classList.add("card");
+
+        div.innerHTML = `
+            <h3>${c.name}</h3>
+            <p>${c.text}</p>
+            <div class="actions">
+                <button onclick="like(${index})">👍 ${c.likes}</button>
+                <button onclick="reply(${index})">Reply</button>
+            </div>
+            <div class="replies">
+                ${c.replies.map(r => `<p class="reply">↳ ${r}</p>`).join("")}
+            </div>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+function addComment() {
+    const name = document.getElementById("name").value;
+    const text = document.getElementById("comment").value;
+
+    if(name === "" || text === "") return;
+
+    comments.unshift({
+        name,
+        text,
+        likes: 0,
+        replies: []
+    });
+
+    saveComments();
+    renderComments();
+
+    document.getElementById("name").value = "";
+    document.getElementById("comment").value = "";
+}
+
+function like(index) {
+    comments[index].likes++;
+    saveComments();
+    renderComments();
+}
+
+function reply(index) {
+    const r = prompt("Your reply:");
+    if(!r) return;
+
+    comments[index].replies.push(r);
+    saveComments();
+    renderComments();
+}
+function removeComment(index){
+    localStorage.removeItem("comments");
+    comments = [];
+    renderComments();
+}
+
+renderComments();
+</script>
+
+</body>
+</html>

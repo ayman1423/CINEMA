@@ -1,0 +1,134 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial;
+    background: radial-gradient(circle at top, #111, #000);
+    color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.nav-link:hover,
+.active {
+    background: linear-gradient(45deg, gold, orange);
+    color: black;
+}
+
+/* TITLE */
+.title {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 50px;
+    color: gold;
+    position: relative;
+}
+
+.title::after {
+    content: "";
+    width: 60%;
+    height: 3px;
+    background: gold;
+    position: absolute;
+    left: 20%;
+    bottom: -10px;
+    transition: 0.4s;
+}
+
+.title:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* FORM */
+.form-box {
+    width: 300px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-box input,
+.form-box textarea {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.form-box button {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(45deg, gold, orange);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* CARDS */
+#commentsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.card {
+    width: 300px;
+    background: rgba(255, 215, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    background: rgba(255, 215, 0, 0.25);
+}
+
+.card h3 {
+    color: gold;
+}
+
+.actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.actions button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* REPLIES */
+.replies {
+    margin-top: 10px;
+}
+
+.reply {
+    font-size: 14px;
+    color: #ccc;
+    margin-left: 10px;
+}

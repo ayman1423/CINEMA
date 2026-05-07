@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Coming Soon</title>
+    <link rel="stylesheet" href="coming soon.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="../index.html" class="nav-link">Home Page</a>
+        <a href="../TOP-ACTORS/top-actors.html" class="nav-link">Top-Actors</a>
+        <a href="coming soon.html" class="nav-link active">Coming Soon</a>
+        <a href="../OPINIONS/opinion.html" class="nav-link">Opinions</a>
+        <a href="../COMMENTS/comments.html" class="nav-link">Comments</a>
+        <a href="../CONTACT US/contact us.html" class="nav-link">Contact Us</a>
+    </nav>
+</header>
+
+<main>
+    <h1 class="title">Coming Soon</h1>
+    <p class="subtitle">Something cinematic is loading...</p>
+
+    <div class="countdown">
+        <div><span id="days">03</span><p>Days</p></div>
+        <div><span id="hours">00</span><p>Hours</p></div>
+        <div><span id="minutes">00</span><p>Minutes</p></div>
+        <div><span id="seconds">00</span><p>Seconds</p></div>
+    </div>
+
+    <button class="notify-btn">Notify Me</button>
+    <p class="message" id="msg"></p>
+</main>
+
+<script>
+
+    const now = new Date().getTime();
+    targetDate = now + (3 * 24 * 60 * 60 * 1000);
+
+const interval = setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+        clearInterval(interval);
+        document.querySelector(".countdown").innerHTML = "";
+        document.querySelector(".title").innerText = "NOW AVAILABLE";
+        document.querySelector(".subtitle").innerText = "Enjoy the experience 🎬";
+        return;
+    }
+
+    document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
+    document.getElementById("hours").innerText = Math.floor((diff % (1000*60*60*24))/(1000*60*60));
+    document.getElementById("minutes").innerText = Math.floor((diff % (1000*60*60))/(1000*60));
+    document.getElementById("seconds").innerText = Math.floor((diff % (1000*60))/1000);
+
+}, 1000);
+
+/* ===== NOTIFY BUTTON ===== */
+const btn = document.querySelector(".notify-btn");
+const msg = document.getElementById("msg");
+
+btn.addEventListener("click", () => {
+    msg.innerText = "🎬 You will be notified!";
+    msg.style.opacity = "1";
+
+    setTimeout(() => {
+        msg.style.opacity = "0";
+    }, 3000);
+});
+</script>
+
+</body>
+</html>
