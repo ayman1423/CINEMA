@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0d0d0d;
+  color: #fff;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 40px;
+}
+
+/* Title */
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, orange, gold);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.subtitle {
+  color: #aaa;
+  margin-bottom: 40px;
+}
+
+/* Card */
+.card {
+  background: #111;
+  border-radius: 15px;
+  padding: 30px;
+  border: 1px solid rgba(255, 165, 0, 0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: orange;
+  box-shadow: 0 10px 30px rgba(255,165,0,0.2);
+}
+
+/* Text */
+.card p {
+  line-height: 1.7;
+  color: #ddd;
+}
+
+/* Highlight */
+.highlight {
+  color: orange;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.highlight:hover {
+  color: gold;
+}
+
+/* Info grid */
+.info {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+/* Boxes */
+.box {
+  flex: 1;
+  background: #0a0a0a;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #222;
+  transition: 0.3s;
+}
+
+.box:hover {
+  border-color: orange;
+  transform: scale(1.05);
+}
+
+/* Labels */
+.label {
+  color: gold;
+  font-size: 0.85rem;
+}
+
+.value {
+  font-weight: bold;
+  margin-top: 5px;
+}
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  padding: 10px 16px;
+  background: #111;
+  color: orange;
+  text-decoration: none;
+  font-weight: bold;
+
+  border: 1px solid rgba(255,165,0,0.4);
+  border-radius: 8px;
+
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.back-button:hover {
+  background: orange;
+  color: black;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255,165,0,0.3);
+}

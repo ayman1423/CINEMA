@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Top Rated Challenge</title>
+  <link rel="stylesheet" href="top rated.css">
+</head>
+<body>
+
+<nav>
+    <a href="../index.html">Home Page</a>
+    <a href="../COMMENTS/comments.html">Comments</a>
+    <a href="../CONTACT US/contact us.html">Contact Us</a>
+    <a href="../ABOUT US/about us.html">About Us</a>
+    <a href="top rated.html" class="active">Top Rated</a>
+    <a href="../A PROPOS DU SITE WEB.html/a propos du site web.html">A Propos Du Site Web</a>
+</nav>
+
+<h1 class="title">Top Rated Challenge</h1>
+
+<div class="question">
+  <strong>Choisis le film le mieux noté 👇</strong>
+</div>
+
+<div class="game">
+  <div class="card" id="c1"></div>
+  <div class="card" id="c2"></div>
+</div>
+
+<div class="score">
+  Score: <span id="score">0</span>
+</div>
+
+<script>
+const movies = [
+  {name:"Inception", rating:9, img:"top rated images/im1.jpg"},
+  {name:"Interstellar", rating:10, img:"top rated images/im2.jpg"},
+  {name:"Joker", rating:8.5, img:"top rated images/im3.jpg"},
+  {name:"Dune", rating:8.8, img:"top rated images/im4.jpg"},
+  {name:"Mad Max: Fury Road", rating:8.7, img:"top rated images/im5.jpg"},
+  {name:"John Wick", rating:8.3, img:"top rated images/im6.jpg"},
+  {name:"The Dark Knight", rating:9.0, img:"top rated images/im7.jpg"},
+  {name:"Avengers: Endgame", rating:8.4, img:"top rated images/im8.jpg"},
+  {name:"Mission Impossible Fallout", rating:8.6,img:"top rated images/im9.jpg"},
+  {name:"Gladiator", rating:8.5, img:"top rated images/im10.jpg"}
+];
+
+let score = 0;
+
+const c1 = document.getElementById("c1");
+const c2 = document.getElementById("c2");
+
+function randomPair(){
+  let pool = [...movies].sort(()=>Math.random()-0.5);
+  return [pool[0], pool[1]];
+}
+
+function startRound(){
+  let [m1, m2] = randomPair();
+
+  let best = m1.rating > m2.rating ? m1 : m2;
+
+  c1.innerHTML = `
+    <img src="${m1.img}">
+    <h3>${m1.name}</h3>
+  `;
+
+  c2.innerHTML = `
+    <img src="${m2.img}">
+    <h3>${m2.name}</h3>
+  `;
+
+  c1.onclick = () => play(m1, best);
+  c2.onclick = () => play(m2, best);
+}
+
+function play(choice, best){
+  if(choice === best){
+    score += 10;
+    document.body.style.background = "#0f0f0f";
+  } else {
+    score -= 5;
+    document.body.style.background = "#3a0000";
+  }
+
+  document.getElementById("score").innerText = score;
+
+  setTimeout(()=>{
+    document.body.style.background = "#111";
+    startRound();
+  },400);
+}
+
+startRound();
+</script>
+
+</body>
+</html>
