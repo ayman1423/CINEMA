@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Opinions</title>
+    <link rel="stylesheet" href="opinion.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="../index.html" class="nav-link">Home Page</a>
+        <a href="../COMMING SOON/coming soon.html" class="nav-link">Coming Soon</a>
+        <a href="opinion.html" class="nav-link active">Opinions</a>
+        <a href="../COMMENTS/comments.html" class="nav-link">Comments</a>
+        <a href="../CONTACT US/contact us.html" class="nav-link">ContactT Us</a>
+        <a href="../ABOUT US/about us.html" class="nav-link">About Us</a>
+    </nav>
+</header>
+
+<main>
+    <h1 class="title">Movie Opinions</h1>
+
+    <!-- FORM -->
+    <div class="form-box">
+        <input type="text" id="name" placeholder="Your name">
+        <textarea id="text" placeholder="Your opinion..."></textarea>
+
+        <div class="stars" id="stars">
+            <span onclick="setRating(1)">⭐</span>
+            <span onclick="setRating(2)">⭐</span>
+            <span onclick="setRating(3)">⭐</span>
+            <span onclick="setRating(4)">⭐</span>
+            <span onclick="setRating(5)">⭐</span>
+        </div>
+
+        <button onclick="addOpinion()">Publish</button>
+        <button onclick="clearOpinions()">Clear comment(s)</button>
+    </div>
+
+    <div id="opinionsContainer" class="opinions-grid"></div>
+</main>
+
+<script>
+let rating = 0;
+let opinions = JSON.parse(localStorage.getItem("opinions")) || [];
+
+function setRating(r) {
+    rating = r;
+    const stars = document.querySelectorAll(".stars span");
+
+    stars.forEach((s, i) => {
+        s.style.opacity = i < r ? "1" : "0.3";
+    });
+}
+
+function save() {
+    localStorage.setItem("opinions", JSON.stringify(opinions));
+}
+
+function render() {
+    const container = document.getElementById("opinionsContainer");
+    container.innerHTML = "";
+
+    opinions.forEach(op => {
+        const div = document.createElement("div");
+        div.classList.add("op-card");
+
+        div.innerHTML = `
+            <h3>${op.name}</h3>
+            <div class="rating">${"⭐".repeat(op.rating)}</div>
+            <p>${op.text}</p>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+function addOpinion() {
+    const name = document.getElementById("name").value;
+    const text = document.getElementById("text").value;
+
+    if(!name || !text || rating === 0) return;
+
+    opinions.unshift({ name, text, rating });
+
+    save();
+    render();
+
+    document.getElementById("name").value = "";
+    document.getElementById("text").value = "";
+    rating = 0;
+}
+function clearOpinions(){
+    localStorage.removeItem("opinions");
+    opinions = [];
+    render();
+}
+
+render();
+</script>
+
+</body>
+</html>

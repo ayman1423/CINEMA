@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="../index.html">Home Page</a>
+        <a href="../COMMENTS/comments.html">Comments</a>
+        <a href="contact us.html" class="active">Contact Us</a>
+        <a href="../ABOUT US/about us.html">About Us</a>
+        <a href="../TOP RATED/top rated.html">Top Rated</a>
+        <a href="../A PROPOS DU SITE WEB.html/a propos du site web.html">A Propos Du Site Web</a>
+    </nav>
+
+    <!-- TITLE -->
+    <h1 class="title">Contact Us</h1>
+
+    <!-- CONTENT -->
+    <div class="container">
+
+        <!-- FORM -->
+        <div class="form-box">
+            <form id="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject">
+                <textarea placeholder="Your Message" required></textarea>
+
+                <button type="submit" id="send-btn">SEND MESSAGE</button>
+
+                <p id="success-msg">Your message has been sent!<br><br>
+                    We Will Get Back To You As Soon As Possible</p>
+            </form>
+        </div>
+
+        <!-- INFO -->
+        <div class="info-box">
+            <h2>Get In Touch :</h2>
+            <p>📧 contact@moviesworld.com</p>
+            <p>📱 +212 600 000 000</p>
+            <p>📍 Morocco</p>
+
+            <div class="socials">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+const form = document.getElementById("contact-form");
+const btn = document.getElementById("send-btn");
+const msg = document.getElementById("success-msg");
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    // bouton loading
+    btn.textContent = "Sending...";
+    btn.disabled = true;
+
+    setTimeout(() => {
+        btn.textContent = "Sent ✓";
+        msg.classList.add("show");
+
+        form.reset();
+
+        // reset bouton après 3s
+        setTimeout(() => {
+            btn.textContent = "SEND MESSAGE";
+            btn.disabled = false;
+        }, 3000);
+
+    }, 1000);
+});
+    </script>
+
+</body>
+</html>
